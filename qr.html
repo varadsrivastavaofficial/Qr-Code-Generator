@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        .container {
+            display: flex;
+            background-color: rgb(121, 17, 240);
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            flex-direction: column;
+        }
+        .box {
+            background-color: rgb(237, 206, 206);
+            text-align: center;
+            padding: 20px 100px;
+            position: relative;
+            border: 5px solid pink;
+            border-radius: 10px;
+        }
+        button {
+            background-color: white;
+            padding: 10px 100px;
+            border-radius: 20px;
+        }
+        input {
+            padding: 10px 50px;
+            text-align: left;
+        }
+        button:hover {
+            background-color: rgb(121, 17, 240);
+            transform: scale(1.1);
+        }
+    </style>
+<title>QR Code Generator</title>
+</head>
+<body>
+<div class="container">
+    <div class="box">
+       <h2>QR Code Generator</h2>
+       <input type="text" id="inputtext" placeholder="Enter the URL" ><br><br><br>
+       <button onclick="generate()">Generate QR</button>
+    </div>
+    <div class="qr">
+       <img src="" id="imgqr"><br><br>
+    </div>
+</div>
+
+<script>
+    function generate() {
+        let inputtext = document.getElementById("inputtext").value;
+        let img = document.getElementById("imgqr");
+        let apiUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(inputtext)}&size=150x150`;
+        img.src = apiUrl;
+    }
+</script>
+</body>
+</html>
